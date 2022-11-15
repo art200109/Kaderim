@@ -6,7 +6,7 @@ from pymongo import MongoClient
 from bson import json_util, ObjectId
 import json
 
-##TEST_TEST
+##TEST_TESTS
 client = MongoClient()
 client = MongoClient("mongodb://admin:A123a123@mongodb-36-rhel7.kaderim.svc.cluster.local:27017/?authMechanism=DEFAULT&authSource=kader")
 
