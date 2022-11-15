@@ -16,12 +16,27 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 CORS(app)
 
 @app.route("/")
-def all_menu():
+def all_users():
     return parse_mongo(client.kader.users.find())
 
-@app.route("/<username>")
-def login(username):
-    return parse_mongo(client.kader.users.find_one({"name": username}))
+@app.route("/<user_id>")
+def login(user_id):
+    return parse_mongo(client.kader.users.find_one(ObjectId(user_id)))
+
+@app.route("/",methods=['PUT'])
+def update_item():
+    data = request.get_json()
+    client.kader.users.update_one({ "name": data["name"] }, {
+        "$set": {"amount":data["amount"]}
+    })
+    return 'success', 200
+
+@app.route("/", methods=['POST'])
+def add_user():
+    data = request.get_json()
+    client.kader.users.insert_one(data)
+   
+    return 'success', 200
 
 def parse_mongo(data):
     return jsonify(json.loads(json_util.dumps(data)))
