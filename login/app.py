@@ -7,7 +7,7 @@ from bson import json_util, ObjectId
 import json
 
 client = MongoClient()
-client = MongoClient('mongodb-36-rhel7', 27017)
+client = MongoClient('mongodb-36-rhel7.kaderim.svc.cluster.local', 27017)
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
