@@ -5,6 +5,7 @@ import urllib.request, json
 from pymongo import MongoClient
 from bson import json_util, ObjectId
 import json
+from flask_cors import CORS
 
 ##TEST_TESTSS
 client = MongoClient()
@@ -12,6 +13,7 @@ client = MongoClient("mongodb://admin:A123a123@mongodb-36-rhel7.kaderim.svc.clus
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+CORS(app)
 
 @app.route("/")
 def all_menu():
