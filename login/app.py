@@ -18,7 +18,7 @@ def all_menu():
 
 @app.route("/<username>")
 def login(username):
-    return parse_mongo(client.kader.users.find_one({"user": username}))
+    return parse_mongo(client.kader.users.find_one({"name": username}))
 
 def parse_mongo(data):
     return jsonify(json.loads(json_util.dumps(data)))
