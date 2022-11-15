@@ -14,7 +14,7 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
    
 @app.route("/<username>")
 def login(username):
-    return parse_mongo(client.toast.users.find_one({"username": username}))
+    return parse_mongo(client.kaderim.users.find_one({"username": username}))
 
 def parse_mongo(data):
     return jsonify(json.loads(json_util.dumps(data)))
