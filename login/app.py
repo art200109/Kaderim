@@ -11,10 +11,14 @@ client = MongoClient("mongodb://admin:A123a123@mongodb-36-rhel7.kaderim.svc.clus
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
-   
+
+@app.route("/")
+def all_menu():
+    return parse_mongo(client.kader.users.find())
+
 @app.route("/<username>")
 def login(username):
-    return parse_mongo(client.kader.users.find_one({"username": username}))
+    return parse_mongo(client.kader.users.find_one({"user": username}))
 
 def parse_mongo(data):
     return jsonify(json.loads(json_util.dumps(data)))
