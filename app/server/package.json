@@ -1,0 +1,20 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "A mock server",
+  "main": "index.ts",
+  "scripts": {
+    "start": "nodemon ./index.ts localhost 5000"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express-async-router": "^0.1.15",
+    "json-server": "^0.17.0",
+    "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "nodemo": "^1.0.0",
+    "ts-node": "^10.9.1"
+  }
+}
