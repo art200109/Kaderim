@@ -5,7 +5,7 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY client/package.json /app
-RUN npm install
+RUN npm install --legacy-peer-deps
 COPY . /app
 
 RUN npm run build
