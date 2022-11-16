@@ -9,7 +9,7 @@ RUN npm install --legacy-peer-deps
 COPY . /app
 WORKDIR /app/client
 
-RUN npm run build
+RUN npm run build --transpile-only
 
 #Run Steps
 FROM nginx:1.19.8-alpine
