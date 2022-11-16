@@ -37,7 +37,7 @@ def add_activity():
     data = request.get_json()
     client.kader.activities.insert_one(data)
     properties = json.loads(data)
-    
+    print ("------- properties:" + properties['gender'])
     #result = requests.post('http://users.kaderim.svc.clutser.local/filter_users', json=data)
     result = requests.get("http://users.kaderim.svc.clutser.local/filter_users?gender={gender}&rank={rank}".format(
                                                                                                                 gender=properties['gender'],
