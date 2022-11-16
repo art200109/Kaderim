@@ -1,11 +1,22 @@
 #sall
-from flask import Flask, render_template, request, jsonify
-import os
-import urllib.request, json 
+import logging
+from splunk_handler import SplunkHandler
+from flask import Flask, request, jsonify
+import json 
 from pymongo import MongoClient
 from bson import json_util, ObjectId
 import json
 from flask_cors import CORS
+
+
+splunk = SplunkHandler(
+    host='splunk.kaderim.svc.cluster.local',
+    port='8088',
+    token='baaa78c2-e7c8-497c-b853-0d78917a96e5',
+    index='main'
+)
+
+logging.getLogger('').addHandler(splunk)
 
 ##TEST_TESTqweqweqweSS
 client = MongoClient()
@@ -23,12 +34,15 @@ def all_users():
 def bar ():
     return parse_mongo(client.kader.users.find())[0]
 
-@app.route("/filter_users?gender=<gender>&rank=<rank>")
-def filter_users(gender, rank):
-    #gender = request.args.get('gender')
-    print ("gender:{0} ; rank: {1}".format(gender))
-    return gender, 200
-    return parse_mongo(client.kader.users.find({'gender':gender, 'rank':rank}))
+@app.route("/filter_users", methods=['POST'])
+def filter_users():
+    data = request.get_json()
+    soldiers = client.kader.users.find({"gender":data.genders})
+    for soldier in soldiers:
+        client.kader.users.update_one({ "name": soldier['name']}, {
+        "$addToSet": {"activities":[data['name']]}
+    })
+    return "ok", 200
 
 @app.route("/<user_id>")
 def login(user_id):
