@@ -13,7 +13,8 @@ splunk = SplunkHandler(
     host='splunk.kaderim.svc.cluster.local',
     port='8088',
     token='baaa78c2-e7c8-497c-b853-0d78917a96e5',
-    index='main'
+    index='main',
+    verify=False
 )
 
 logging.getLogger('').addHandler(splunk)
