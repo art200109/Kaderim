@@ -21,14 +21,11 @@ def all_users():
 
 @app.route("/bar")
 def bar ():
-    return parse_mongo(client.kader.users.find(ObjectId('6374ae326b4cddc3c1ef246e')))
+    return parse_mongo(client.kader.users.find())[0]
 
 @app.route("/girls", methods=['POST'])
 def get_girls():
-    soldiers = parse_mongo(client.kader.users.find())
-    for soldier in soldiers:
-        pass
-
+    soldiers = parse_mongo(client.kader.users.find(gender=1))
 
 @app.route("/<user_id>")
 def login(user_id):
