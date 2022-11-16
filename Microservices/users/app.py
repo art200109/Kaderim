@@ -9,7 +9,7 @@ from flask_cors import CORS
 
 ##TEST_TESTqweqweqweSS
 client = MongoClient()
-client = MongoClient("mongodb://admin:A123a123@mongodb-36-rhel7.kaderim.svc.cluster.local:27017/?authMechanism=DEFAULT&authSource=kader")
+client = MongoClient("mongodb://admin:A123a123@mongo.kaderim.svc.cluster.local:27017/?authMechanism=DEFAULT&authSource=kader")
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
@@ -27,6 +27,7 @@ def bar ():
 def filter_users(gender, rank):
     #gender = request.args.get('gender')
     print ("gender:{0} ; rank: {1}".format(gender))
+    return gender, 200
     return parse_mongo(client.kader.users.find({'gender':gender, 'rank':rank}))
 
 @app.route("/<user_id>")

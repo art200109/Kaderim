@@ -10,7 +10,7 @@ import requests
 
 ##TEST_TESTSS
 client = MongoClient()
-client = MongoClient("mongodb://admin:A123a123@mongodb-36-rhel7.kaderim.svc.cluster.local:27017/?authMechanism=DEFAULT&authSource=kader")
+client = MongoClient("mongodb://admin:A123a123@mongo.kaderim.svc.cluster.local:27017/?authMechanism=DEFAULT&authSource=kader")
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
@@ -37,12 +37,12 @@ def add_activity():
     data = request.get_json()
     client.kader.activities.insert_one(data)
     properties = json.loads(data)
+    return 'success', 200
     #result = requests.post('http://users.kaderim.svc.clutser.local/filter_users', json=data)
-    result = requests.get("http://users.kaderim.svc.clutser.local/filter_users?gender={gender}&rank={rank}".format(
-                                                                                                                gender=properties['gender'],
-                                                                                                                rank=properties['rank'] )
-    #return 'success', 200
-    return properties['gender'], 200
+    #result = requests.get("http://users.kaderim.svc.clutser.local/filter_users?gender={gender}&rank={rank}".format(
+    #                                                                                                            gender=properties['gender'],
+    #                                                                                                            rank=properties['rank'] )
+    #return properties['gender'], 200
 
     
 def parse_mongo(data):
