@@ -61,6 +61,7 @@ def update_item():
 
 @app.route("/", methods=['POST'])
 def add_user():
+    logging.info("user added - " + request.get_json())
     data = request.get_json()
     client.kader.users.insert_one(data)
    
