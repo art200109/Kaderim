@@ -7,9 +7,10 @@ WORKDIR /app
 COPY client/package.json /app
 RUN npm install --legacy-peer-deps
 COPY . /app
+WORKDIR /app/client
 
 RUN npm run build
 
 #Run Steps
-FROM nginx:1.19.8-alpine  
-COPY --from=build-step /app/build /usr/share/nginx/html
+FROM nginx:1.19.8-alpine
+COPY --from=build-step /app/client/build /usr/share/nginx/html
