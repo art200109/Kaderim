@@ -25,6 +25,7 @@ def bar ():
 
 @app.route("/girls")
 def get_girls():
+    print (help(client.kader.users.find))
     return parse_mongo(client.kader.users.find(gender=1))
 
 @app.route("/<user_id>")
