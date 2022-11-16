@@ -15,7 +15,7 @@ app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 CORS(app)
 
-@app.route("/")
+@app.route("/",methods=["GET"])
 def all_activities():
     return parse_mongo(client.kader.activities.find())
 
