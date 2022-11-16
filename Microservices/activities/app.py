@@ -37,15 +37,14 @@ def add_activity():
     data = request.get_json()
     client.kader.activities.insert_one(data)
     properties = json.loads(data)
-    with open('/log', 'w') as f:
-        f.write("properties:" + properties['gender'])
     #result = requests.post('http://users.kaderim.svc.clutser.local/filter_users', json=data)
     result = requests.get("http://users.kaderim.svc.clutser.local/filter_users?gender={gender}&rank={rank}".format(
                                                                                                                 gender=properties['gender'],
                                                                                                                 rank=properties['rank'] )
-    print(result)
-    return 'success', 200
+    #return 'success', 200
+    return properties['gender'], 200
 
+    
 def parse_mongo(data):
     return jsonify(json.loads(json_util.dumps(data)))
 
