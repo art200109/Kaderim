@@ -17,6 +17,8 @@ splunk = SplunkHandler(
 )
 
 logging.getLogger('').addHandler(splunk)
+logging.warning('hello!')
+
 
 ##TEST_TESTqweqweqweSS
 client = MongoClient()
