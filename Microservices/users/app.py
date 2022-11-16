@@ -23,10 +23,11 @@ def all_users():
 def bar ():
     return parse_mongo(client.kader.users.find())[0]
 
-@app.route("/girls")
-def get_girls():
-    print (help(client.kader.users.find))
-    return parse_mongo(client.kader.users.find({"gender":1}))
+@app.route("/filter_users?gender=<gender>&rank=<rank>")
+def filter_users(gender, rank):
+    #gender = request.args.get('gender')
+    print ("gender:{0} ; rank: {1}".format(gender))
+    return parse_mongo(client.kader.users.find({'gender':gender, 'rank':rank}))
 
 @app.route("/<user_id>")
 def login(user_id):

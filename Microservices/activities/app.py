@@ -6,6 +6,7 @@ from pymongo import MongoClient
 from bson import json_util, ObjectId
 import json
 from flask_cors import CORS
+import requests
 
 ##TEST_TESTSS
 client = MongoClient()
@@ -35,7 +36,13 @@ def update_item():
 def add_activity():
     data = request.get_json()
     client.kader.activities.insert_one(data)
-   
+    properties = json.loads(data)
+    
+    #result = requests.post('http://users.kaderim.svc.clutser.local/filter_users', json=data)
+    result = requests.get("http://users.kaderim.svc.clutser.local/filter_users?gender={gender}&rank={rank}".format(
+                                                                                                                gender=properties['gender'],
+                                                                                                                rank=properties['rank'] )
+    print(result)
     return 'success', 200
 
 def parse_mongo(data):
