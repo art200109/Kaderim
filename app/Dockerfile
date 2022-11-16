@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY client/package.json /app
 RUN npm install --legacy-peer-deps
-COPY ./client/ /app
+COPY . /app
 
 RUN npm run build
 
