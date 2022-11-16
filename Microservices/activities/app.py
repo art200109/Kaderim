@@ -10,7 +10,7 @@ import requests
 
 ##TEST_TESTSS
 client = MongoClient()
-client = MongoClient("mongodb://admin:A123a123@mongo.kaderim.svc.cluster.local:27017/?authMechanism=DEFAULT&authSource=kader")
+client = MongoClient("mongodb://admin:A123a123@mongo.kaderim.svc.cluster.local:27017/?authMechanism=DEFAULT&authSource=admin")
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
