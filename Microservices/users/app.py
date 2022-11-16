@@ -14,7 +14,7 @@ client = MongoClient("mongodb://admin:A123a123@mongodb-36-rhel7.kaderim.svc.clus
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 CORS(app)
-
+## test
 @app.route("/", methods=['GET'])
 def all_users():
     return parse_mongo(client.kader.users.find())
